@@ -1,9 +1,9 @@
 export class Todo {
-  id: number;
+  id: string;
   title = '';
   complete = false;
 
-  constructor(values: Object = {}) {
-    Object.assign(this, values);
-  }
+  // constructor(values: Object = {}) {
+  //   Object.assign(this, values);
+  // }
 }

@@ -18,42 +18,33 @@ export class AppComponent implements OnInit {
   }
 
   public ngOnInit() {
-    this.todoDataService
-      .getAllTodos()
-      .subscribe(
-        (todos) => {
-          this.todos = todos;
-        }
-      );
+    //this.todos = this.todoDataService.getAllTodos();
+    this.todoDataService.getAllTodos().subscribe(data => {
+      this.todos = data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          ...e.payload.doc.data()
+        } as Todo;
+      })
+    });
   }
 
   onAddTodo(todo) {
-    this.todoDataService
-      .addTodo(todo)
-      .subscribe(
-        (newTodo) => {
-          this.todos = this.todos.concat(newTodo);
-        }
-      );
+    this.todoDataService.addTodo(todo);
   }
 
   onToggleTodoComplete(todo) {
-    this.todoDataService
-      .toggleTodoComplete(todo)
-      .subscribe(
-        (updatedTodo) => {
-          todo = updatedTodo;
-        }
-      );
+    // this.todoDataService
+    //   .toggleTodoComplete(todo)
+    //   .subscribe(
+    //     (updatedTodo) => {
+    //       todo = updatedTodo;
+    //     }
+    //   );
+    this.todoDataService.toggleTodoComplete(todo);
   }
 
   onRemoveTodo(todo) {
-    this.todoDataService
-      .deleteTodoById(todo.id)
-      .subscribe(
-        (_) => {
-          this.todos = this.todos.filter((t) => t.id !== todo.id);
-        }
-      );
+    this.todoDataService.deleteTodoById(todo);
   }
 }

@@ -12,22 +12,53 @@ import { TodoDataService } from './todo-data.service';
 import { TodoListItemComponent } from './todo-list-item/todo-list-item.component';
 import { ApiService } from './api.service';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+
+import { AngularFirestore } from '@angular/fire/firestore';
+
+import { environment } from '../environments/environment';
+import { SignupComponent } from './signup/signup.component';
+import { LoginComponent } from './login/login.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     TodoListComponent,
     TodoListFooterComponent,
     TodoListHeaderComponent,
-    TodoListItemComponent
+    TodoListItemComponent,
+    SignupComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     //HttpModule
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
   ],
   providers: [TodoDataService, ApiService],
   bootstrap: [AppComponent]
 })
+
 export class AppModule {
+  constructor(/*public db: AngularFirestore/*AngularFireDatabase*/){
+
+    //add
+    //db.collection('users').add({id:11,login:'qww',password:'aaa'});
+
+    //get
+    // db.collection('users').snapshotChanges()
+    // .subscribe(data =>{
+
+    //   for (let i = 0; i < data.length; i++) {
+    //     const element = data[i].payload.doc.data();
+    //     console.log(element);
+    //   }
+
+    // });
+
+  }
 }
