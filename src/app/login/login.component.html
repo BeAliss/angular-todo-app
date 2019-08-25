@@ -1,1 +1,6 @@
 <p>login works!</p>
+<input type="text" [(ngModel)]="userLogin">
+<input type="password" [(ngModel)]="userPassword">
+<input type="button" value="go" (keyup.enter)="onLogin()" (click)="onLogin()">
+<p>{{error}}</p>
+<p>dsfiasjdnfoansdfo</p>

@@ -10,37 +10,45 @@ import 'rxjs/add/observable/throw';
 
 import { AngularFirestore } from '@angular/fire/firestore';
 
-const API_URL = environment.apiUrl;
+// const currentUser = sessionStorage.getItem('currentUser');
 
 @Injectable()
 export class ApiService {
-
+  currentUser: string = sessionStorage.getItem('currentUser');
   constructor(
-    private http: HttpClient, //Http
-    private db: AngularFirestore
+    // private http: HttpClient,
+    private db: AngularFirestore,
   ) {
+    
+  }
+
+  public saveDataUser(login, password) {
+    return this.db.collection(`/users`).add({login: login, password: password});
+  }
+  public correctLogin(login){
+    return this.db.collection('users',ref => ref.where('login', '==', login)).snapshotChanges()
+  }
+  public correctData(login,password){
+    return this.db.collection('users',ref => ref.where('login', '==', login)
+    .where('password', '==', password)
+    ).snapshotChanges()
   }
 
   public getAllTodos() {
-    return this.db.collection('todo').snapshotChanges();
+    this.currentUser = sessionStorage.getItem('currentUser');
+    return this.db.collection(`/users/${this.currentUser}/todo`).snapshotChanges();
   }
 
   public createTodo(todo: Todo) {
-    return this.db.collection('todo')
-    .add({...todo} as Todo);
-  }
-
-  public getTodoById(todoId: number): Observable<Todo> {
-    return this.http.get<Todo>(`${API_URL}/${todoId}`);
+    return this.db.collection(`/users/${this.currentUser}/todo`).add({...todo} as Todo);
   }
 
   public updateTodo(todo: Todo){
     //delete todo.id;
-    this.db.doc('todo/' + todo.id)
-      .update({...todo} as Todo);
+    this.db.doc(`/users/${this.currentUser}/todo/` + todo.id).update({...todo} as Todo);
   }
 
   public deleteTodoById(todo: Todo) {
-    this.db.doc('todo/'+todo.id).delete();
+    this.db.doc(`/users/${this.currentUser}/todo/`+todo.id).delete();
   }
 }

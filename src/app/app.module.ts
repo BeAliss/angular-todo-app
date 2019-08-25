@@ -20,6 +20,10 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
+import { AuthService } from './auth.service';
+import { AppRoutingModule } from './app-routing/app-routing.module';
+import { HomeComponent } from './home/home.component';
+import {AuthGuardService} from './auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -29,36 +33,22 @@ import { LoginComponent } from './login/login.component';
     TodoListHeaderComponent,
     TodoListItemComponent,
     SignupComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    //HttpModule
+    //HttpModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    AppRoutingModule
   ],
-  providers: [TodoDataService, ApiService],
+  providers: [TodoDataService, ApiService, AuthService,AuthGuardService],
   bootstrap: [AppComponent]
 })
 
 export class AppModule {
-  constructor(/*public db: AngularFirestore/*AngularFireDatabase*/){
-
-    //add
-    //db.collection('users').add({id:11,login:'qww',password:'aaa'});
-
-    //get
-    // db.collection('users').snapshotChanges()
-    // .subscribe(data =>{
-
-    //   for (let i = 0; i < data.length; i++) {
-    //     const element = data[i].payload.doc.data();
-    //     console.log(element);
-    //   }
-
-    // });
-
-  }
+  constructor(){}
 }

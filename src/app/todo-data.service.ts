@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Todo } from './todo';
 import { ApiService } from './api.service';
-import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class TodoDataService {
@@ -29,11 +28,6 @@ export class TodoDataService {
   // Simulate GET /todos
   getAllTodos(){
     return this.api.getAllTodos();
-  }
-
-  // Simulate GET /todos/:id
-  getTodoById(todoId: number): Observable<Todo> {
-    return this.api.getTodoById(todoId);
   }
 
   // Toggle complete
