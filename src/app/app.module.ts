@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 // import { HttpModule } from '@angular/http';
 import { HttpClientModule } from "@angular/common/http";
 
+
 import { AppComponent } from './app.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoListFooterComponent } from './todo-list-footer/todo-list-footer.component';
@@ -14,6 +15,7 @@ import { ApiService } from './api.service';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 import { AngularFirestore } from '@angular/fire/firestore';
 
@@ -43,6 +45,7 @@ import {AuthGuardService} from './auth-guard.service';
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    AngularFireStorageModule,
     AppRoutingModule
   ],
   providers: [TodoDataService, ApiService, AuthService,AuthGuardService],

@@ -9,20 +9,49 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
 import { AngularFirestore } from '@angular/fire/firestore';
-
+import { AngularFireStorage } from '@angular/fire/storage';
 // const currentUser = sessionStorage.getItem('currentUser');
 
 @Injectable()
 export class ApiService {
   currentUser: string = sessionStorage.getItem('currentUser');
+  private basePath:string = '/uploads';
+  // uploads: AngularFirestoreCollectionGroup<Upload[]>;
   constructor(
     // private http: HttpClient,
     private db: AngularFirestore,
+    private st: AngularFireStorage
   ) {
     
   }
+public getAllUrls(){
+  let urls =[];
+  this.st.storage.refFromURL('gs://test-acf99.appspot.com/').listAll().then(
+    allUrl=>{
+      allUrl.items.map(ref=>{
+       this.st.storage.refFromURL('gs://test-acf99.appspot.com/'+ref.fullPath).getDownloadURL().then(
+          url=>{
+            urls.push(url)
+          }
+        );
+      })
+      
+    }
+  );
 
+  return urls;
+}
+  public uploadFile(file,filePath,todo) {
+    return this.st.storage.ref(filePath).put(file).then(()=>{
+      this.st.storage.refFromURL('gs://test-acf99.appspot.com/'+filePath).getDownloadURL().then(
+        url=>{
+          todo.urls.push(url);
+          this.db.doc(`/users/${this.currentUser}/todo/`+todo.id).update({...todo} as Todo);
+        });
+    });
+  }
   public saveDataUser(login, password) {
+    
     return this.db.collection(`/users`).add({login: login, password: password});
   }
   public correctLogin(login){

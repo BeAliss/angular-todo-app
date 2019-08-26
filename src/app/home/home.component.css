@@ -1,0 +1,15 @@
+.todoapp{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.logout{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.logout span{
+    background-color: pink;
+    padding: 2px;
+}
+.logout span:hover {
+   cursor: pointer;
+}

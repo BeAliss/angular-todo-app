@@ -1,0 +1,36 @@
+a{
+    color: #4d4d4d;
+}
+.upload{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    /* background-color: rgba(192,192,192,0.4); */
+    text-align: center;
+    margin-bottom: 5px;
+    margin-top: 20px;
+    margin-right: 40px;
+    margin-left: 40PX;
+}
+.upload input{
+    margin: 0;
+}
+.destroy:hover {
+    cursor: pointer;
+}
+.toggle:hover {
+    cursor: pointer;
+}
+.toggle:hover {
+    /* background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" …="50" cy="50" r="50" fill="none" stroke="#ededed" stroke-width="3"/></svg>'); */
+    background: url('/src/assets/img/pencil.png')
+}
+.file{
+    font-size: 18px;
+}
+.list-doc li label {
+    margin-left: 0px;
+}
+.list-doc{
+    margin-left: 40px;
+}

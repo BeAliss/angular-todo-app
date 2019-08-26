@@ -36,4 +36,11 @@ export class TodoDataService {
     return this.api.updateTodo(todo);
   }
 
+  uploadFile(file,filePath,todo){
+    return this.api.uploadFile(file,filePath,todo)
+  }
+  getAllUrls(){
+    return this.api.getAllUrls();
+  }
+
 }

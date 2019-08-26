@@ -1,5 +1,9 @@
-<p> Регистрация</p>
-<input type="text" [(ngModel)]="userLogin">
-<input type="password" [(ngModel)]="userPassword">
-<input type="button" value="за регистрироваться" (keyup.enter)="onSignUp()" (click)="onSignUp()">
-<p>{{error}}</p>
+<div class="signup">
+    <p class="title">Регистрация</p>
+    <input class="form-element" placeholder="введите логин" type="text" [(ngModel)]="userLogin">
+    <input class="form-element" placeholder="введите пароль" type="password" [(ngModel)]="userPassword">
+    <div>
+    <input class="form-element element-btn" type="button" value="за регистрироваться" (click)="onSignUp()">
+    </div>
+    <p class="error">{{error}}</p>
+</div>

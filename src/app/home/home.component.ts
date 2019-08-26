@@ -1,19 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoDataService } from './../todo-data.service';
+import { AuthService } from './../auth.service';
 import { Todo } from './../todo';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  providers: [TodoDataService]
+  providers: [TodoDataService,AuthService]
 })
 export class HomeComponent implements OnInit {
 
   todos: Todo[] = [];
 
   constructor(
-    private todoDataService: TodoDataService
+    private todoDataService: TodoDataService,
+    private authService: AuthService,
+    private router: Router,
   ) {
   }
 
@@ -38,6 +42,11 @@ export class HomeComponent implements OnInit {
 
   onRemoveTodo(todo) {
     this.todoDataService.deleteTodoById(todo);
+  }
+  logout(){
+    sessionStorage.clear();
+    this.router.navigate(['/login'])
+
   }
 }
 

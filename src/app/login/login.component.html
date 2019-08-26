@@ -1,6 +1,13 @@
-<p>login works!</p>
-<input type="text" [(ngModel)]="userLogin">
-<input type="password" [(ngModel)]="userPassword">
-<input type="button" value="go" (keyup.enter)="onLogin()" (click)="onLogin()">
-<p>{{error}}</p>
-<p>dsfiasjdnfoansdfo</p>
+<div class="login">
+<p class="title">Авторизация</p>
+<input class="form-element" placeholder="введите логин" type="text" [(ngModel)]="userLogin">
+<input class="form-element" placeholder="введите пароль" type="password" [(ngModel)]="userPassword">
+<div>
+<input class="form-element element-btn" type="button" value="вход" (click)="onLogin()">
+</div>
+<p class="error">{{error}}</p>
+<div class="login-footer">
+    <span> нет учетной записи?</span>
+    <a href="/signup">зарегистрироваться</a>
+</div>
+</div>

@@ -1,5 +1,15 @@
 <div class="view">
   <input class="toggle" type="checkbox" (click)="toggleTodoComplete(todo)" [checked]="todo.complete">
   <label>{{todo.title}}</label>
+  <ul class="list-doc">
+    <li *ngFor="let item of todo.urls">
+      <label ><a class="file" [href]="item" target="_blank">открыть файл</a></label>
+    </li>
+  </ul>
   <button class="destroy" (click)="removeTodo(todo)"></button>
+  <div class="upload">
+    <input type="file" class="upload" (change)="detectFile($event)">
+    <input type="button" value="загрузить" (click)="uploadFile()">
+  </div>
 </div>
+
