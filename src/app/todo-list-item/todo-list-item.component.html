@@ -11,5 +11,8 @@
     <input type="file" class="upload" (change)="detectFile($event)">
     <input type="button" value="загрузить" (click)="uploadFile()">
   </div>
+  <div class="foto">
+    <app-add-foto [todo]="todo"></app-add-foto>
+  </div>
 </div>
 

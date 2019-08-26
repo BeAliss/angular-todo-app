@@ -34,3 +34,8 @@ a{
 .list-doc{
     margin-left: 40px;
 }
+.foto{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}

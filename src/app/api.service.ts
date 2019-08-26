@@ -10,13 +10,12 @@ import 'rxjs/add/observable/throw';
 
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
-// const currentUser = sessionStorage.getItem('currentUser');
+
 
 @Injectable()
 export class ApiService {
   currentUser: string = sessionStorage.getItem('currentUser');
   private basePath:string = '/uploads';
-  // uploads: AngularFirestoreCollectionGroup<Upload[]>;
   constructor(
     // private http: HttpClient,
     private db: AngularFirestore,
@@ -41,6 +40,7 @@ public getAllUrls(){
 
   return urls;
 }
+
   public uploadFile(file,filePath,todo) {
     return this.st.storage.ref(filePath).put(file).then(()=>{
       this.st.storage.refFromURL('gs://test-acf99.appspot.com/'+filePath).getDownloadURL().then(
@@ -49,6 +49,11 @@ public getAllUrls(){
           this.db.doc(`/users/${this.currentUser}/todo/`+todo.id).update({...todo} as Todo);
         });
     });
+  }
+
+  public uploadImage(file,todo) {
+    todo.images.push(file);
+    return this.db.doc(`/users/${this.currentUser}/todo/`+todo.id).update({...todo} as Todo);
   }
   public saveDataUser(login, password) {
     

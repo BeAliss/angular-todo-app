@@ -1,0 +1,7 @@
+<div *ngFor="let item of todo.images">
+    <img  [src]="item" alt="">
+</div>
+<div><input type="button" value="добавить фото" (click)="addHiddenFoto()"></div>
+<video id="video" autoplay style="display:none;" width="315"></video>
+<input type="button" value="сделать фото" (click)="createFoto()">
+<canvas style="display:none;" width="315"></canvas>

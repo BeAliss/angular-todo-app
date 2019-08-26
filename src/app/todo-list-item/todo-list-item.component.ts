@@ -33,25 +33,16 @@ export class TodoListItemComponent {
   }
   uploadFile() {
     const file = this.selectedFile;
-    console.log(file);
-    
+
     const filePath = this.timeStamp+file.name;
     this.dataService.uploadFile(file,filePath,this.todo);
     this.fileUrls =  this.dataService.getAllUrls();
-    console.log(this.fileUrls);
-    
-
-    // const task = this.storage.upload(filePath, file);
   }
   detectFile(event) {
     console.log(event);
     
     this.selectedFile = event.target.files[0];
     this.timeStamp = event.timeStamp;
-    // const file = this.selectedFile;
-    // console.log(file);
-    // const filePath = 'name-your-file-path-here';
-    // this.dataService.uploadFile(file,filePath);
 }
 
 }

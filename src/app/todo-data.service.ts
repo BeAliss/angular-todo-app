@@ -42,5 +42,8 @@ export class TodoDataService {
   getAllUrls(){
     return this.api.getAllUrls();
   }
+  uploadImage(file,todo){
+    return this.api.uploadImage(file,todo);
+  }
 
 }

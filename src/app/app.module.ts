@@ -26,6 +26,7 @@ import { AuthService } from './auth.service';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { HomeComponent } from './home/home.component';
 import {AuthGuardService} from './auth-guard.service';
+import { AddFotoComponent } from './add-foto/add-foto.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {AuthGuardService} from './auth-guard.service';
     TodoListItemComponent,
     SignupComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    AddFotoComponent
   ],
   imports: [
     BrowserModule,
